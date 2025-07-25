@@ -42,6 +42,7 @@ body {
         0 10px 10px -5px rgba(0, 0, 0, 0.04),
         0 0 0 1px rgba(255, 255, 255, 0.05);
     max-width: 680px;
+    width: 100%;
     overflow: hidden;
     position: relative;
     animation: slideInUp 0.8s cubic-bezier(0.23, 1, 0.32, 1);
@@ -285,7 +286,9 @@ body {
     color: var(--white);
     padding: 48px 40px;
     text-align: center;
-    margin: 48px -40px -48px -40px;
+    /* CORREGIDO: Eliminados los márgenes negativos problemáticos */
+    margin-top: 48px;
+    border-radius: 0 0 24px 24px;
     position: relative;
     overflow: hidden;
 }
@@ -413,28 +416,133 @@ body {
     margin-top: 8px;
 }
 
+/* MEDIA QUERIES MEJORADAS */
 @media (max-width: 768px) {
-    body { padding: 10px; }
+    body { 
+        padding: 15px;
+        /* CORREGIDO: Asegurar que el viewport sea respetado */
+        align-items: flex-start;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
     
-    .post-container { margin: 0; }
+    .post-container { 
+        margin: 0;
+        width: 100%;
+        max-width: 100%;
+        /* CORREGIDO: Asegurar que no se desborde */
+        min-height: auto;
+    }
     
-    .header, .content, .cta-section { padding: 32px 24px; }
+    .header, .content { 
+        padding: 32px 24px; 
+    }
+    
+    /* CORREGIDO: Padding consistente para CTA */
+    .cta-section { 
+        padding: 32px 24px;
+        margin-top: 32px;
+    }
     
     .logo { font-size: 2.5rem; }
     
-    .hook { font-size: 1.75rem; }
+    .hook { 
+        font-size: 1.75rem;
+        line-height: 1.3;
+    }
     
-    .services { grid-template-columns: 1fr; }
+    .services { 
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
     
-    .cta-buttons { flex-direction: column; align-items: center; }
+    .cta-buttons { 
+        flex-direction: column; 
+        align-items: center;
+        gap: 12px;
+    }
     
-    .cta-button { width: 100%; max-width: 280px; }
+    .cta-button { 
+        width: 100%; 
+        max-width: 280px;
+        padding: 14px 24px;
+    }
     
-    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stats { 
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding: 24px;
+    }
+    
+    /* CORREGIDO: Mejor espaciado en móvil */
+    .problem, .solution {
+        padding: 24px 20px;
+        margin: 24px 0;
+    }
 }
 
 @media (max-width: 480px) {
-    .hook { font-size: 1.5rem; }
-    .cta-title { font-size: 1.5rem; }
-    .problem, .solution { padding: 24px; font-size: 1rem; }
+    body {
+        padding: 10px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    
+    .hook { 
+        font-size: 1.5rem;
+        line-height: 1.4;
+    }
+    
+    .cta-title { 
+        font-size: 1.5rem;
+        line-height: 1.3;
+    }
+    
+    .problem, .solution { 
+        padding: 20px 16px; 
+        font-size: 1rem;
+        margin: 20px 0;
+    }
+    
+    .header, .content, .cta-section {
+        padding: 24px 20px;
+    }
+    
+    .logo {
+        font-size: 2rem;
+    }
+    
+    .tagline {
+        font-size: 1.1rem;
+    }
+    
+    /* CORREGIDO: Mejor handling de stats en pantallas muy pequeñas */
+    .stats {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 20px;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+}
+
+/* CORREGIDO: Media query adicional para pantallas muy pequeñas */
+@media (max-width: 360px) {
+    body {
+        padding: 8px;
+    }
+    
+    .post-container {
+        border-radius: 16px;
+    }
+    
+    .cta-section {
+        border-radius: 0 0 16px 16px;
+    }
+    
+    .header, .content, .cta-section {
+        padding: 20px 16px;
+    }
 }
